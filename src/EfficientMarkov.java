@@ -16,44 +16,34 @@ public class EfficientMarkov extends BaseMarkov {
 
     @Override
     public void setTraining(String text) {
-
-        myText=text;
+        myText = text;
         myMap.clear();
+        for (int x = 0; x <= myText.length() - myOrder; x++) {
+            String tensei = myText.substring(x, x + myOrder);
 
-        for(int i=0;i<myText.length()-myOrder+1;i++) {
-            String next = myText.substring(i, i+myOrder); //takes the letters from i(included) and i+myOrder(not included)
-            if(i==myText.length()-myOrder) { // checks if it is the last letter in the string
-                if(myMap.containsKey(next)) { // checks if the key is present in the map or not
-                    ArrayList<String> follows= new ArrayList<String>();
-
-                    follows= myMap.get(next);
-                    follows.add(PSEUDO_EOS);
+            if (myMap.containsKey(tensei)) {
+                if (x == myText.length() - myOrder) {
+                    ArrayList<String> z = new ArrayList<>();
+                    z = myMap.get(tensei);
+                    z.add(PSEUDO_EOS);
                 }
                 else {
-                    ArrayList<String> follows= new ArrayList<String>();
-
-                    follows.add(PSEUDO_EOS);
-                    myMap.put(next, follows);
+                    ArrayList<String> z = new ArrayList<>();
+                    z = myMap.get(tensei);
+                    z.add(myText.substring(x, x + 1));
                 }
+            } else {
 
-            }
-            else {
-                if(myMap.containsKey(next)) {
-                    ArrayList<String> follows= new ArrayList<String>();
-                    String letter= myText.substring(i+myOrder,i+myOrder+1);
-                    follows= myMap.get(next);
-                    follows.add(letter);
+                ArrayList<String> z = new ArrayList<>();
+                if (x == myText.length() - myOrder) {
+                    z.add(PSEUDO_EOS);
                 }
                 else {
-                    ArrayList<String> follows= new ArrayList<String>();
-                    String letter= myText.substring(i+myOrder,i+myOrder+1);
-                    follows.add(letter);
-                    myMap.put(next, follows); //adds the updated list and the key to the map
+                    z.add(myText.substring(x, x + 1));
                 }
-
-
-
+                myMap.put(tensei, z);
             }
+
 
         }
 
