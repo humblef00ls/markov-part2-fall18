@@ -46,11 +46,14 @@ myMap.clear();
 @Override
     public ArrayList<String> getFollows(String key)
 {
-    ArrayList<String> ajax = new ArrayList<>();
-    if (myMap.containsKey(key))
-        return myMap.get(key);
-    else
-    throw new NoSuchElementException(key+" not in map");
+    ArrayList<String> follows= new ArrayList<String>();
+    if(myMap.containsKey(key)) {
+        follows=myMap.get(key); //constant time operation
+    }
+    else {
+        throw new NoSuchElementException(key+"not in map"); // throws an exception if the key is not present in the map
+    }
+    return follows;
 }
 
 
