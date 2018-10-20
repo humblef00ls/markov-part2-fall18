@@ -21,27 +21,28 @@ public class EfficientMarkov extends BaseMarkov {
         for (int x = 0; x <= myText.length() - myOrder; x++) {
             String tensei = myText.substring(x, x + myOrder);
 
-            if (myMap.containsKey(tensei)) {
-                if (x == myText.length() - myOrder) {
+            if (x == myText.length() - myOrder) {
+                if (myMap.containsKey(tensei)) {
                     ArrayList<String> z = new ArrayList<>();
                     z = myMap.get(tensei);
                     z.add(PSEUDO_EOS);
                 }
                 else {
                     ArrayList<String> z = new ArrayList<>();
-                    z = myMap.get(tensei);
-                    z.add(myText.substring(x, x + 1));
+                    z.add(PSEUDO_EOS);
+                    myMap.put(tensei,z);
                 }
             } else {
-
                 ArrayList<String> z = new ArrayList<>();
-                if (x == myText.length() - myOrder) {
-                    z.add(PSEUDO_EOS);
+                if (myMap.containsKey(tensei)) {
+                    z  = myMap.get(tensei);
+                    z.add(myText.substring(x, x + 1));
                 }
                 else {
                     z.add(myText.substring(x, x + 1));
+                    myMap.put(tensei, z);
                 }
-                myMap.put(tensei, z);
+
             }
 
 
