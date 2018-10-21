@@ -3,13 +3,46 @@ This is the analysis for Markov Part 2, Fall 2018
 Include your name and net id here. Answer the questions from the assignment 
 that are reproduced below
 
+Aparimeya Taneja
+at307
+
 (1) Determine (from running Benchmark.java) how long it takes for 
 BaseMarkov to generate 2,000, 4,000, 8,000, 16,000, and 32,000 
 random characters using the default file and an order 5 Markov Model. 
-Include these timings in your report. 
+Include these timings in your report.
+
 The program also generates 4,096 characters using texts that increase in 
 size from 496,768 characters to 4,967,680 characters (10 times the number).  
 Do you the timings support the O(NT) analysis for BaseMarkov?
+
+time	source	#chars
+0.007	496768	100
+0.015	496768	200
+0.032	496768	400
+0.063	496768	800
+0.126	496768	1600
+0.238	496768	3200
+0.474	496768	6400
+0.938	496768	12800
+
+0.304	496768	4096
+0.600	993536	4096
+0.886	1490304	4096
+1.181	1987072	4096
+1.507	2483840	4096
+1.802	2980608	4096
+2.090	3477376	4096
+2.349	3974144	4096
+2.765	4470912	4096
+2.986	4967680	4096
+
+Finished tests
+
+
+
+The timings support the O(NT) analysis for BaseMarkov as, when the character size ofincrease so the the time taken but also when the source text
+Yes, the timings support the O(NT) analysis for BaseMarkov. As the characters increase, the timings increase in the first case while
+in the second case, the timing increase as the source (text) increases.
 
 
 
@@ -21,7 +54,51 @@ The program also generates 4,096 characters using texts that increase in
 size from 496,768 characters to 4,967,680 characters (10 times the number).  
 Do you the timings support the O(N+T) analysis for EfficientMarkov?
 
+
+time	source	#chars
+0.095	496768	100
+0.099	496768	200
+0.064	496768	400
+0.110	496768	800
+0.095	496768	1600
+0.064	496768	3200
+0.066	496768	6400
+0.070	496768	12800
+
+0.066	496768	4096
+0.150	993536	4096
+0.233	1490304	4096
+0.358	1987072	4096
+0.449	2483840	4096
+0.506	2980608	4096
+0.598	3477376	4096
+0.641	3974144	4096
+0.780	4470912	4096
+0.889	4967680	4096
+
+Finished tests
+
+Here we see the timings support the O(N+T) analysis for EfficientMarkov. There is only a time increase for increase in text source, compared to BaseMarkov with O(N*T)
+Also, the change in EfficientMarkov for larger sources is not as much as in the case of BaseMarkov.
+
 (3)The tests in the class Benchmark use an order-5 Markov Model. 
 Run tests that you think are appropriate to determine if the order of the 
 Markov Model has a significant impact on the running time for BaseMarkov. 
 Explain your reasoning.
+
+time	source	#chars
+0.072	496768	100
+0.146	496768	200
+0.300	496768	400
+0.612	496768	800
+1.244	496768	1600
+2.465	496768	3200
+4.814	496768	6400
+9.525	496768	12800
+
+3.009	496768	4096
+13.570	993536	4096
+25.729	1490304	4096
+
+As we can see, with an order of 1, it takes much longer, as now essentially it iterates through every single character of the source. With larger orders
+the keys are bigger and hence less in number as so it would take a lot less time.

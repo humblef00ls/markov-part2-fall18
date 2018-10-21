@@ -27,7 +27,6 @@ public class EfficientWordMarkov extends BaseWordMarkov {
                     myMap.get(y).add(myWords[x+myOrder]);
             }
             else {
-
                 ArrayList<String> z = new ArrayList<>();
                 if (x+myOrder==myWords.length)
                     z.add(PSEUDO_EOS);

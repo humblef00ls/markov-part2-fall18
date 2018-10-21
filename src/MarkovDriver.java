@@ -9,9 +9,7 @@ import java.util.*;
  */
 
 public class MarkovDriver {
-	
 	private static final int TEXT_SIZE = 200;
-	
 	public static void markovGenerate(MarkovInterface<?> markov, String text) {
 		double start = System.nanoTime();
 		for(int k=1; k <= 5; k++) {
